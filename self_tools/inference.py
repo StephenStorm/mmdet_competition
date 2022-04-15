@@ -141,7 +141,7 @@ def inference_model_with_loader(config_file, checkpoint_file, img_dir, json_file
                     res_line = {'image_id': dataset.filename2id[name],
                                 'bbox': [xmin, ymin, xmax-xmin, ymax-ymin],
                                 'category_id': int(labels[j] + 1),
-                                'score': float(bbox[4])}
+                                'score': float(bbox[4]) / 2 + 0.5}
                     result.append(res_line)
 
             i += 1
