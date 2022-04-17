@@ -24,7 +24,11 @@ bash tools/dist_test.sh \
     --options ${JSONFILE_PREFIX} \
     [--show]
 
+python tools/train.py \
+    ${CONFIG_FILE} \
+    [optional arguments]
 
+    
 ./tools/dist_test.sh \
     configs/mask_rcnn/mask_rcnn_r50_fpn_1x_coco.py \
     checkpoints/mask_rcnn_r50_fpn_1x_coco_20200205-d4b0c5d6.pth \
