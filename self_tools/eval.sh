@@ -33,10 +33,10 @@ bash tools/dist_test.sh \
     --options "jsonfile_prefix=./mask_rcnn_test-dev_results"
 
 ./tools/dist_test.sh \
-    configs/cascade_rcnn/tianchi_swinb_3x_bigsize_anchor_bs2x8_albu_2xlr_gc_context_autoaug_rotate.py \
-    work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_2batchsize/epoch_12.pth \
+    /opt/tiger/haggs/mmdetection/work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_2batchsize_rpn_giou/tianchi_swinb_3x_bigsize_anchor_bs2x8_albu_2xlr_gc_context_autoaug_rotate_giou.py \
+    /opt/tiger/haggs/mmdetection/work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_2batchsize_rpn_giou/epoch_12.pth \
     8 \
     --format-only \
-    --options "jsonfile_prefix=./work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_2batchsize/res"
+    --options "jsonfile_prefix=/opt/tiger/haggs/mmdetection/work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_2batchsize_rpn_giou/res_2bs_rpn_giou"
     
 
