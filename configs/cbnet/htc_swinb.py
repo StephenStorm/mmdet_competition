@@ -6,7 +6,7 @@ _base_ = [
 pretrained = 'pretrain/swin_base_patch4_window7_224.pth'
 model = dict(
     type='CascadeRCNN',
-    pretrained=pretrained,
+    # pretrained=pretrained,
     backbone=dict(
         type='CBSwinTransformer',
         embed_dims=128,
@@ -19,9 +19,11 @@ model = dict(
         drop_rate=0.0,
         attn_drop_rate=0.0,
         drop_path_rate=0.3,
-        # ape=False,
         patch_norm=True,
         out_indices=(0, 1, 2, 3),
+        convert_weights=True,
+        init_cfg=dict(type='Pretrained', checkpoint=pretrained)
+        
         # pretrained = 'pretrained'
         # init_cfg=dict(
         #     type='Pretrained',

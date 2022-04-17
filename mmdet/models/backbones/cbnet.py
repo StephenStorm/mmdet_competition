@@ -286,7 +286,7 @@ class _SwinTransformer(SwinTransformer):
 
 @BACKBONES.register_module()
 class CBSwinTransformer(BaseModule):
-    def __init__(self, embed_dims=96, cb_zero_init=True, cb_del_stages=1, **kwargs):
+    def __init__(self, embed_dims=96, cb_zero_init=True, cb_del_stages=1, init_cfg = None, pretrained = None, **kwargs):
         # assert not (init_cfg and pretrained), \
         #     'init_cfg and pretrained cannot be specified at the same time'
         # if isinstance(pretrained, str):
@@ -299,13 +299,13 @@ class CBSwinTransformer(BaseModule):
         #     raise TypeError('pretrained must be a str or None')
 
 
-        # super(CBSwinTransformer, self).__init__(init_cfg=init_cfg)
-        super(CBSwinTransformer, self).__init__()
+        super(CBSwinTransformer, self).__init__(init_cfg=init_cfg)
+        # super(CBSwinTransformer, self).__init__()
         self.cb_zero_init = cb_zero_init
         self.cb_del_stages = cb_del_stages
         self.cb_modules = nn.ModuleList()
         for cb_idx in range(2):
-            cb_module = _SwinTransformer(embed_dims=embed_dims, **kwargs)
+            cb_module = _SwinTransformer(embed_dims=embed_dims, pretrained = pretrained, **kwargs)
             if cb_idx > 0:
                 cb_module.del_layers(cb_del_stages)
             self.cb_modules.append(cb_module)
