@@ -545,7 +545,9 @@ class SwinTransformer(BaseModule):
                  pretrained=None,
                  convert_weights=False,
                  frozen_stages=-1,
-                 init_cfg=None):
+                 init_cfg=None,
+                 output_img=False):
+        self.output_img = output_img
         self.convert_weights = convert_weights
         self.frozen_stages = frozen_stages
         if isinstance(pretrain_img_size, int):
@@ -759,5 +761,6 @@ class SwinTransformer(BaseModule):
                                self.num_features[i]).permute(0, 3, 1,
                                                              2).contiguous()
                 outs.append(out)
-
+        if self.output_img:
+            outs.insert(0, x)
         return outs

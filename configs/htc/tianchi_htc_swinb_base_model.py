@@ -44,7 +44,9 @@ model = dict(
             target_stds=[1.0, 1.0, 1.0, 1.0]),
         loss_cls=dict(
             type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
-        loss_bbox=dict(type='SmoothL1Loss', beta=1.0 / 9.0, loss_weight=1.0)),
+        reg_decoded_bbox=True,      # 使用GIoUI时注意添加
+        loss_bbox=dict(type='GIoULoss', loss_weight=5.0)),
+        # loss_bbox=dict(type='SmoothL1Loss', beta=1.0 / 9.0, loss_weight=1.0)),
     roi_head=dict(
         type='HybridTaskCascadeRoIHead',
         interleaved=True,
@@ -187,6 +189,7 @@ model = dict(
         ]),
     test_cfg=dict(
         rpn=dict(
+            nms_across_levels=False,
             nms_pre=1000,
             max_per_img=1000,
             nms=dict(type='nms', iou_threshold=0.7),
