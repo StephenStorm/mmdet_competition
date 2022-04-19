@@ -5,21 +5,22 @@ _base_ = [
     '../_base_/default_runtime.py'
 ]
 
-# model = dict(
-#     rpn_head=dict(
-#         loss_bbox=dict(type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=1.0)),
-#         # reg_decoded_bbox=True,      # 使用GIoUI时注意添加
-#         # loss_bbox=dict(type='GIoULoss', loss_weight=5.0)),
-# )
+model = dict(
+    rpn_head=dict(
+        loss_bbox=dict(type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=1.0)),
+        # reg_decoded_bbox=True,      # 使用GIoUI时注意添加
+        # loss_bbox=dict(type='GIoULoss', loss_weight=5.0)),
+)
 
 data = dict(
-    samples_per_gpu=4,
+    samples_per_gpu=2,
     workers_per_gpu=4,
 )
 
+
 optimizer = dict(
     type='AdamW', 
-    lr=0.0000125*8*4, 
+    lr=0.0000125*8*2, 
     betas=(0.9, 0.999), 
     weight_decay=0.05,
     paramwise_cfg=dict(
@@ -48,4 +49,4 @@ gpu_ids = range(8)
 
 # optimizer_config = dict(
 #     type='Fp16OptimizerHook', grad_clip=None, coalesce=True, bucket_size_mb=-1)
-work_dir = './work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_3batchsize_rpn_giou_fp16'
+work_dir = './work_dirs/cascade_rcnn_swinb_fpn_all_trick_keep_ratio_false'

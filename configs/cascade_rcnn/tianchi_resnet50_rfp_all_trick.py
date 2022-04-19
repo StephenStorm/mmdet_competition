@@ -9,8 +9,8 @@ _base_ = [
 model = dict(
     type='CascadeRCNN',
     backbone=dict(
-        type='DetectoRS_ResNet',
-        depth=50,
+        type='DetectoRS_ResNeXt',
+        depth=101,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
         frozen_stages=1,
@@ -21,7 +21,7 @@ model = dict(
         sac=dict(type='SAC', use_deform=True),
         stage_with_sac=(False, True, True, True),
         output_img=True,
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')),
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnext101')),
     neck=dict(
         type='RFP',
         in_channels=[256, 512, 1024, 2048],
@@ -32,8 +32,8 @@ model = dict(
         aspp_dilations=(1, 3, 6, 1),
         rfp_backbone=dict(
             rfp_inplanes=256,
-            type='DetectoRS_ResNet',
-            depth=50,
+            type='DetectoRS_ResNeXt',
+            depth=101,
             num_stages=4,
             out_indices=(0, 1, 2, 3),
             frozen_stages=1,
@@ -43,7 +43,7 @@ model = dict(
             sac=dict(type='SAC', use_deform=True),
             stage_with_sac=(False, True, True, True),
             init_cfg=dict(
-                type='Pretrained', checkpoint='torchvision://resnet50'),
+                type='Pretrained', checkpoint='torchvision://resnext101'),
             style='pytorch')),
     rpn_head=dict(
         type='RPNHead',
@@ -243,4 +243,4 @@ gpu_ids = range(8)
 
 # optimizer_config = dict(
 #     type='Fp16OptimizerHook', grad_clip=None, coalesce=True, bucket_size_mb=-1)
-work_dir = './work_dirs/cascade_rcnn_r50_rfp_1x_all_trick'
+work_dir = './work_dirs/cascade_rcnn_resnext101_rfp_1x_all_trick'

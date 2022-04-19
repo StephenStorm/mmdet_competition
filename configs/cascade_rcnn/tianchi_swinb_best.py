@@ -13,13 +13,13 @@ _base_ = [
 # )
 
 data = dict(
-    samples_per_gpu=4,
+    samples_per_gpu=2,
     workers_per_gpu=4,
 )
 
 optimizer = dict(
     type='AdamW', 
-    lr=0.0000125*8*4, 
+    lr=0.0000125*8*2, 
     betas=(0.9, 0.999), 
     weight_decay=0.05,
     paramwise_cfg=dict(
@@ -48,4 +48,6 @@ gpu_ids = range(8)
 
 # optimizer_config = dict(
 #     type='Fp16OptimizerHook', grad_clip=None, coalesce=True, bucket_size_mb=-1)
-work_dir = './work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_3batchsize_rpn_giou_fp16'
+work_dir = './work_dirs/cascade_rcnn_swinb_fpn_all_trick_all_data'
+
+# best workdir : mmdetection/work_dirs/cascade_rcnn_swinb_fpn_3x_ms_albu_2lr_gc_context_rotate_autoaug_2batchsize_250warmup

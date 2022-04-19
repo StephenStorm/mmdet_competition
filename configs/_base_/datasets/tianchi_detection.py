@@ -60,6 +60,7 @@ train_pipeline = [
 
         multiscale_mode='range',
         keep_ratio=True),
+        # keep_ratio=False),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(
         type='AutoAugment',
@@ -103,6 +104,7 @@ test_pipeline = [
         flip=True,
         transforms=[
             dict(type='Resize', keep_ratio=True),
+            # dict(type='Resize', keep_ratio=False),
             dict(type='RandomFlip'),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='Pad', size_divisor=32),
@@ -112,10 +114,10 @@ test_pipeline = [
 ]
 datasetA = dict(
     type=dataset_type,
-    ann_file=data_root + 'train_val_split/train.json',            #80% data
-    img_prefix=data_root + 'train_val_split/train',
-    # ann_file=data_root + 'trademark/train/annotations/instances_train2017.json',   #all data
-    # img_prefix=data_root + 'trademark/train/images',
+    # ann_file=data_root + 'train_val_split/train.json',            #80% data
+    # img_prefix=data_root + 'train_val_split/train',
+    ann_file=data_root + 'trademark/train/annotations/instances_train2017.json',   #all data
+    img_prefix=data_root + 'trademark/train/images',
     pipeline=train_pipeline)
 data = dict(
     samples_per_gpu=2,
