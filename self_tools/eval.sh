@@ -37,10 +37,10 @@ python tools/train.py \
     --options "jsonfile_prefix=./mask_rcnn_test-dev_results"
 
 ./tools/dist_test.sh \
-   /opt/tiger/haggs/mmdetection/work_dirs/cascade_rcnn_swinb_fpn_all_trick_sobel/tianchi_swinb_alltrick_sobel.py \
-    /opt/tiger/haggs/mmdetection/work_dirs/cascade_rcnn_swinb_fpn_all_trick_sobel/epoch_12.pth \
+   /opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_size7.py \
+   /opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/epoch_12.pth \
     8 \
     --format-only \
-    --options "jsonfile_prefix=/opt/tiger/haggs/mmdetection/work_dirs/cascade_rcnn_swinb_fpn_all_trick_sobel/res"
+    --options "jsonfile_prefix=/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/res_simmim_large_win7"
     
 

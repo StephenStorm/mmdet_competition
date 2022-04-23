@@ -63,13 +63,26 @@ def filter_cate(imageid_cates):
 
 
 
+# def processing_json(json_data, imageid_cates, save_path):
+#     new_json_data = []
+#     for data in tqdm(json_data):
+#         imageid = data['image_id']
+#         cate = data['category_id']
+#         if cate == imageid_cates[imageid]:
+#             new_json_data.append(data)
+
+#     with open(save_path, 'w') as fp:
+#         json.dump(new_json_data, fp, indent=4)
+
 def processing_json(json_data, imageid_cates, save_path):
     new_json_data = []
     for data in tqdm(json_data):
         imageid = data['image_id']
-        cate = data['category_id']
-        if cate == imageid_cates[imageid]:
-            new_json_data.append(data)
+        # cate = data['category_id']
+        # if cate == imageid_cates[imageid]:
+        #     new_json_data.append(data)
+        data['category_id'] = imageid_cates[imageid]
+        new_json_data.append(data)
 
     with open(save_path, 'w') as fp:
         json.dump(new_json_data, fp, indent=4)
@@ -78,8 +91,9 @@ def processing_json(json_data, imageid_cates, save_path):
 
 
 if __name__=='__main__':
-    file = 'work_dirs/swinb_alldata_l/cbnetv2-swin-base-fpn-sabl-res.bbox.json'
-    file_post = 'work_dirs/swinb_alldata_l/cbnetv2-swin-base-fpn-sabl-res.bbox_post2.json'
+    file = '/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/res_simmim_large_win7.bbox.json'
+    
+    file_post = '/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/res_simmim_large_win7_postprocess.json'
 
     json_data = load_json(file)
     imageid_info = add_on_imageid(json_data)
