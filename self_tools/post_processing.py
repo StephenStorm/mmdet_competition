@@ -2,6 +2,8 @@ import json
 from tqdm import tqdm
 import numpy as np
 import queue
+import sys
+import os
 
 def most_frequent(list):
     return max(set(list), key=list.count)
@@ -91,9 +93,12 @@ def processing_json(json_data, imageid_cates, save_path):
 
 
 if __name__=='__main__':
-    file = '/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/res_simmim_large_win7.bbox.json'
-    
-    file_post = '/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_size7/res_simmim_large_win7_postprocess.json'
+    file = '/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_base_sabl_gc_gn_alltrick_simmim_rpn_giou/swinb_rpn_giou.bbox.json'
+    file_post = file.replace('.bbox', '_postprocess')
+    # print(file_post)
+    if os.path.exists(file_post) :
+        sys.exit()
+    # file_post = '/opt/tiger/haggs/CBNetV2/work_dirs/cascade_mask_rcnn_cbv2_swin_large_sabl_gc_gn_alldata_simmim_drop0.3/res_drop0.3_postprocess.json'
 
     json_data = load_json(file)
     imageid_info = add_on_imageid(json_data)
@@ -115,6 +120,7 @@ if __name__=='__main__':
     print('change_num', change_num)
 
     processing_json(json_data, new_imageid_cates, file_post)
+    print(file_post)
 
 
 
